@@ -5,14 +5,6 @@
 <div class="top-bar">
 <div class="container">
 <div class="row">
-<div class="col-lg-7 col-md-5 col-xs-12">
-
-<ul class="list-inline">
-<li><i class="lni-phone"></i> +0123 456 789</li>
-<li><i class="lni-envelope"></i> <a href="http://preview.uideck.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4c3f393c3c233e380c2b212d2520622f2321">[email&#160;protected]</a></li>
-</ul>
-
-</div>
 <div class="col-lg-5 col-md-7 col-xs-12">
 <div class="roof-social float-right">
 <a class="facebook" href="#"><i class="lni-facebook-filled"></i></a>
@@ -41,57 +33,54 @@
 <span class="lni-menu"></span>
 <span class="lni-menu"></span>
 </button>
-<a href="index-2.html" class="navbar-brand"><img src="{% static 'assets/img/logo.png' %}" alt=""></a>
+<a href="{% url 'home' %}" class="navbar-brand"><img src="{% static 'assets/img/logo.png' %}" alt=""></a>
 </div>
 <div class="collapse navbar-collapse" id="main-navbar">
 <ul class="navbar-nav mr-auto w-100 justify-content-center">
 
-<li class="nav-item">
-<a class="nav-link" href="category.html">
+<li class="nav-item {{ home_nav }}">
+<a class="nav-link" href="{% url 'home' %}">
 Home
 </a>
 </li>
 
-<li class="nav-item">
-<a class="nav-link" href="category.html">
+<li class="nav-item {{ feed_nav }}">
+<a class="nav-link" href="{% url 'feed' %}">
 Feed
 </a>
 </li>
 
-<li class="nav-item">
-<a class="nav-link" href="category.html">
+<li class="nav-item {{ articles_nav }}">
+<a class="nav-link" href="{% url 'articles' %}">
 Educational Articles
 </a>
 </li>
 
-<li class="nav-item">
-<a class="nav-link" href="category.html">
+<li class="nav-item {{ blog_nav }}">
+<a class="nav-link" href="{% url 'blog' %}">
 Blog
 </a>
 </li>
 
-<li class="nav-item">
-<a class="nav-link" href="category.html">
+<li class="nav-item {{ gallery_nav }}">
+<a class="nav-link" href="{% url 'gallery' %}">
 Gallery
 </a>
 </li>
 
-<li class="nav-item">
-<a class="nav-link" href="category.html">
+<li class="nav-item {{ about_nav }}">
+<a class="nav-link" href="{% url 'about' %}">
 About
 </a>
 </li>
 
-<li class="nav-item">
-<a class="nav-link" href="category.html">
+<li class="nav-item {{ contact_nav }}">
+<a class="nav-link" href="{% url 'contact' %}">
 Contact
 </a>
 </li>
 
 </ul>
-<div class="post-btn">
-<a class="btn btn-common" href="post-ads.html"><i class="lni-pencil-alt"></i> Post an Ad</a>
-</div>
 </div>
 </div>
 
