@@ -10,75 +10,30 @@
 <div class="container">
 <h1 class="section-title">Browse our Gallery</h1>
 <div class="row">
+    {% for collection in collections %}
 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
 <div class="featured-box">
 <figure>
-<a href="#"><img class="img-fluid" src="{% static 'assets/img/featured/img-1.jpg' %}" alt=""></a>
+<a href="#"><img class="img-fluid" src="{{ collection.cover_image.url }}" alt=""></a>
 </figure>
 <div class="feature-content ">
 
-<h4><a href="ads-details.html">Canon SX Powershot ...</a></h4>
+<h4><a href="ads-details.html">{{ collection.title }}</a></h4>
 <div class="meta-tag">
 <span>
-<a href="#"><i class="lni-user"></i> John Smith</a>
-</span>
-<span>
-<a href="#"><i class="lni-map-marker"></i> Drug Abuse</a>
+<a href="#"><i class="lni-user"></i>{{ collection.posted_by.full_name }}</a>
 </span>
 </div>
-<p class="dsc">This is the description for what was happening. we went to vhumba</p>
+<p class="dsc">{{ collection.description }}</p>
 <div class="listing-bottom">
 <a href="ads-details.html" class="btn btn-common float-right">View Photos</a>
 </div>
 </div>
 </div>
 </div>
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
-<div class="featured-box">
-<figure>
-<a href="#"><img class="img-fluid" src="{% static 'assets/img/featured/img-1.jpg' %}" alt=""></a>
-</figure>
-<div class="feature-content ">
 
-<h4><a href="ads-details.html">Canon SX Powershot ...</a></h4>
-<div class="meta-tag">
-<span>
-<a href="#"><i class="lni-user"></i> John Smith</a>
-</span>
-<span>
-<a href="#"><i class="lni-map-marker"></i> Drug Abuse</a>
-</span>
-</div>
-<p class="dsc">This is the description for what was happening. we went to vhumba</p>
-<div class="listing-bottom">
-<a href="ads-details.html" class="btn btn-common float-right">View Photos</a>
-</div>
-</div>
-</div>
-</div>
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
-<div class="featured-box">
-<figure>
-<a href="#"><img class="img-fluid" src="{% static 'assets/img/featured/img-1.jpg' %}" alt=""></a>
-</figure>
-<div class="feature-content ">
+    {% endfor %}
 
-<h4><a href="ads-details.html">Canon SX Powershot ...</a></h4>
-<div class="meta-tag">
-<span>
-<a href="#"><i class="lni-user"></i> John Smith</a>
-</span>
-<span>
-<a href="#"><i class="lni-map-marker"></i> Drug Abuse</a>
-</span>
-</div>
-<p class="dsc">This is the description for what was happening. we went to vhumba</p>
-<div class="listing-bottom">
-<a href="ads-details.html" class="btn btn-common float-right">View Photos</a>
-</div>
-</div>
-</div>
-</div>
 
 
 

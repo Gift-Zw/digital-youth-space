@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from .models import User, EducationalArticle, BlogItem, BlogComment, ImageCollection, GalleryPicture
 
 # Create your views here.
 
@@ -14,6 +14,7 @@ def home_view(request):
 def blog_view(request):
     context = {
         'blog_nav': 'active',
+        'blog_items' : BlogItem.objects.all()
     }
     return render(request, 'blog.html', context)
 
@@ -21,6 +22,7 @@ def blog_view(request):
 def articles_view(request):
     context = {
         'articles_nav': 'active',
+        'educational_articles': EducationalArticle.objects.all(),
     }
     return render(request, 'articles.html', context)
 
@@ -35,6 +37,7 @@ def feed_view(request):
 def gallery_view(request):
     context = {
         'gallery_nav': 'active',
+        'collections': ImageCollection.objects.all()
     }
     return render(request, 'gallery.html', context)
 

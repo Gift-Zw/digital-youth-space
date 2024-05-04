@@ -94,94 +94,40 @@ Technology & Innovation <span class="category-counter">(9)</span>
 <div class="tab-content">
 <div id="list-view" class="tab-pane fade active show">
 <div class="row">
+
+{% if educational_articles.count %}
+    {% for article in educational_articles %}
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <div class="featured-box">
 <figure>
-<a href="#"><img class="img-fluid" src="{% static 'assets/img/featured/img-1.jpg' %}" alt=""></a>
+<a href="#"><img class="img-fluid" src="{{ article.cover_image.url }}" alt=""></a>
 </figure>
 <div class="feature-content">
-<h4><a href="ads-details.html">Canon SX Powershot ...</a></h4>
+<h4><a href="ads-details.html">{{ article.title }}</a></h4>
 <div class="meta-tag">
 <span>
-<a href="#"><i class="lni-user"></i> John Smith</a>
+<i class="lni-user"></i>{{ article.posted_by.full_name }}
 </span>
 <span>
-<a href="#"><i class="lni-tag"></i> Category</a>
+<a href="#"><i class="lni-tag"></i> {{ article.category }}</a>
 </span>
 </div>
-<p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+<p class="dsc">{{ article.short_description }}</p>
 <div class="listing-bottom">
 <a href="ads-details.html" class="btn btn-common float-right">View Article</a>
 </div>
 </div>
 </div>
 </div>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-<div class="featured-box">
-<figure>
-<a href="#"><img class="img-fluid" src="{% static 'assets/img/featured/img-1.jpg' %}" alt=""></a>
-</figure>
-<div class="feature-content">
-<h4><a href="ads-details.html">Canon SX Powershot ...</a></h4>
-<div class="meta-tag">
-<span>
-<a href="#"><i class="lni-user"></i> John Smith</a>
-</span>
-<span>
-<a href="#"><i class="lni-tag"></i> Category</a>
-</span>
-</div>
-<p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
-<div class="listing-bottom">
-<a href="ads-details.html" class="btn btn-common float-right">View Article</a>
-</div>
-</div>
-</div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-<div class="featured-box">
-<figure>
-<a href="#"><img class="img-fluid" src="{% static 'assets/img/featured/img-1.jpg' %}" alt=""></a>
-</figure>
-<div class="feature-content">
-<h4><a href="ads-details.html">Canon SX Powershot ...</a></h4>
-<div class="meta-tag">
-<span>
-<a href="#"><i class="lni-user"></i> John Smith</a>
-</span>
-<span>
-<a href="#"><i class="lni-tag"></i> Category</a>
-</span>
-</div>
-<p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
-<div class="listing-bottom">
-<a href="ads-details.html" class="btn btn-common float-right">View Article</a>
-</div>
-</div>
-</div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-<div class="featured-box">
-<figure>
-<a href="#"><img class="img-fluid" src="{% static 'assets/img/featured/img-1.jpg' %}" alt=""></a>
-</figure>
-<div class="feature-content">
-<h4><a href="ads-details.html">Canon SX Powershot ...</a></h4>
-<div class="meta-tag">
-<span>
-<a href="#"><i class="lni-user"></i> John Smith</a>
-</span>
-<span>
-<a href="#"><i class="lni-tag"></i> Category</a>
-</span>
-</div>
-<p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
-<div class="listing-bottom">
-<a href="ads-details.html" class="btn btn-common float-right">View Article</a>
-</div>
-</div>
-</div>
-</div>
+
+    {% endfor %}
+
+{% else %}
+
+    <div style="margin-left: 30%; margin-top: 10%">
+<h4>No articles available</h4>
+    </div>
+{% endif %}
 
 
 </div>

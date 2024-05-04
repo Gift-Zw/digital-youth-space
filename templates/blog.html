@@ -32,84 +32,43 @@
 <div class="tab-content">
 <div id="list-view" class="tab-pane fade active show">
 <div class="row">
+
+{% if blog_items.count != 0 %}
+    {% for item in blog_items %}
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <div class="featured-box">
 <figure>
 
-<a href="#"><img class="img-fluid" src="{% static 'assets/img/featured/img-1.jpg' %}" alt=""></a>
+<a href="#"><img class="img-fluid" src="{{ item.cover_image.url }}" alt=""></a>
 </figure>
 <div class="feature-content">
-<h4><a href="ads-details.html">Canon SX Powershot ...</a></h4>
+<h4><a href="ads-details.html">{{ item.title }}</a></h4>
 <div class="meta-tag">
 <span>
-<a href="#"><i class="lni-user"></i> John Smith</a>
+<i class="lni-user"></i> {{ item.posted_by.full_name }}
 </span>
 <span>
-<a href="#"><i class="lni-map-marker"></i> New York, US</a>
-</span>
-<span>
-<a href="#"><i class="lni-tag"></i> Apple</a>
+<i class="lni-map-marker"></i> {{ item.date_posted }}
 </span>
 </div>
-<p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+<p class="dsc">{{ item.short_description }}</p>
 <div class="listing-bottom">
 <a href="ads-details.html" class="btn btn-common float-right">View Details</a>
 </div>
 </div>
 </div>
 </div>
- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-<div class="featured-box">
-<figure>
+    {% endfor %}
 
-<a href="#"><img class="img-fluid" src="{% static 'assets/img/featured/img-1.jpg' %}" alt=""></a>
-</figure>
-<div class="feature-content">
-<h4><a href="ads-details.html">Canon SX Powershot ...</a></h4>
-<div class="meta-tag">
-<span>
-<a href="#"><i class="lni-user"></i> John Smith</a>
-</span>
-<span>
-<a href="#"><i class="lni-map-marker"></i> New York, US</a>
-</span>
-<span>
-<a href="#"><i class="lni-tag"></i> Apple</a>
-</span>
-</div>
-<p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
-<div class="listing-bottom">
-<a href="ads-details.html" class="btn btn-common float-right">View Details</a>
-</div>
-</div>
-</div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-<div class="featured-box">
-<figure>
+{% else %}
 
-<a href="#"><img class="img-fluid" src="{% static 'assets/img/featured/img-1.jpg' %}" alt=""></a>
-</figure>
-<div class="feature-content">
-<h4><a href="ads-details.html">Canon SX Powershot ...</a></h4>
-<div class="meta-tag">
-<span>
-<a href="#"><i class="lni-user"></i> John Smith</a>
-</span>
-<span>
-<a href="#"><i class="lni-map-marker"></i> New York, US</a>
-</span>
-<span>
-<a href="#"><i class="lni-tag"></i> Apple</a>
-</span>
-</div>
-<p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
-<div class="listing-bottom">
-<a href="ads-details.html" class="btn btn-common float-right">View Details</a>
-</div>
-</div>
-</div>
-</div>
+    <div style="margin-left: 30%; margin-top: 00%">
+<h4>No blog items available</h4>
+    </div>
+{% endif %}
+
+
+
 
 </div>
 </div>

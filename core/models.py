@@ -2,6 +2,16 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.db import models
 
+ARTICLE_CATEGORIES = [
+    ('Career Development', 'Career Development'),
+    ('Personal Growth and Development', 'Personal Growth and Development'),
+    ('Leadership & Entrepreneurship', 'Leadership & Entrepreneurship'),
+    ('Financial Literacy', 'Financial Literacy'),
+    ('Social Impact', 'Social Impact'),
+    ('Health and Wellness', 'Health and Wellness'),
+    ('Technology & Innovation', 'Technology & Innovation')
+]
+
 
 # Create your models here.
 class MyUserManager(BaseUserManager):
@@ -69,3 +79,58 @@ class User(AbstractBaseUser):
 
     def __str__(self):
         return self.full_name
+
+
+class EducationalArticle(models.Model):
+    posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    category = models.CharField(max_length=255, choices=ARTICLE_CATEGORIES)
+    title = models.CharField(max_length=255)
+    cover_image = models.ImageField(upload_to='articles')
+    short_description = models.CharField(max_length=600)
+    content = models.TextField(max_length=10000)
+    date_posted = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+
+class BlogItem(models.Model):
+    posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    cover_image = models.ImageField(upload_to='articles')
+    short_description = models.CharField(max_length=600)
+    content = models.TextField(max_length=10000)
+    date_posted = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+
+class BlogComment(models.Model):
+    blog = models.ForeignKey(BlogItem, on_delete=models.CASCADE)
+    posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=1200)
+    date_posted = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.blog.title
+
+
+class ImageCollection(models.Model):
+    title = models.CharField(max_length=255)
+    cover_image = models.ImageField(upload_to='collections')
+    description = models.CharField(max_length=1200)
+    posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+
+class GalleryPicture(models.Model):
+    collection = models.ForeignKey(ImageCollection, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='gallery')
+    date_posted = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.collection.title

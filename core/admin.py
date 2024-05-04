@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User
+from .models import User, EducationalArticle, BlogItem, BlogComment, ImageCollection, GalleryPicture
 from django import forms
 from django.contrib import admin
 from django.contrib.auth.models import Group
@@ -77,14 +77,46 @@ class UserAdmin(BaseUserAdmin):
         (None, {
             'classes': ('wide',),
             'fields': ('email', 'first_name', 'last_name', 'password1', 'password2', 'is_admin',)}
-        ),
+         ),
     )
     search_fields = ('first_name',)
     ordering = ('first_name',)
     filter_horizontal = ()
+
 
 # Now register the new UserAdmin...
 admin.site.register(User, UserAdmin)
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
 admin.site.unregister(Group)
+
+
+@admin.register(EducationalArticle)
+class EducationalArticleAdmin(admin.ModelAdmin):
+    list_display = ('title', 'posted_by', 'category', 'date_posted')
+    search_fields = ('title', 'posted_by__username')
+    list_filter = ('category',)
+
+
+@admin.register(BlogItem)
+class BlogItemAdmin(admin.ModelAdmin):
+    list_display = ('title', 'posted_by', 'date_posted')
+    search_fields = ('title', 'posted_by__username')
+
+
+@admin.register(BlogComment)
+class BlogCommentAdmin(admin.ModelAdmin):
+    list_display = ('blog', 'posted_by', 'date_posted')
+    search_fields = ('blog__title', 'posted_by__username')
+
+
+@admin.register(ImageCollection)
+class ImageCollectionAdmin(admin.ModelAdmin):
+    list_display = ('title', 'posted_by', 'date_created')
+    search_fields = ('title', 'posted_by__username')
+
+
+@admin.register(GalleryPicture)
+class GalleryPictureAdmin(admin.ModelAdmin):
+    list_display = ('collection', 'date_posted')
+    search_fields = ('collection__title',)
