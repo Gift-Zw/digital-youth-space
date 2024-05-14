@@ -28,13 +28,13 @@ def blog_detail_view(request, id):
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
-            print('we in')
             comment = BlogComment.objects.create(
                 blog=blog_item,
                 comment=form.data['comment'],
                 posted_by=request.user
             )
             comment.save()
+
     context = {
         'blog_nav': 'active',
         'blog_item': blog_item,
@@ -50,6 +50,20 @@ def articles_view(request):
         'educational_articles': EducationalArticle.objects.all(),
     }
     return render(request, 'articles.html', context)
+
+
+def article_detail_view(request, id):
+    article_item = EducationalArticle.objects.filter(id=id).first()
+
+    context = {
+        'articles_nav': 'active',
+        'article': article_item
+
+    }
+    return render(request, 'article_detail.html', context)
+
+
+
 
 
 def feed_view(request):

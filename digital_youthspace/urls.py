@@ -31,6 +31,7 @@ urlpatterns = [
     path('about/', views.about_view, name="about"),
     path('contact/', views.contact_view, name="contact"),
     path('blog-detail/<int:id>/', views.blog_detail_view, name="blog-detail"),
+    path('edu/<int:id>/', views.article_detail_view, name="article-detail"),
 
 ]
 
