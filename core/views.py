@@ -104,7 +104,7 @@ def contact_view(request):
     if request.method == "POST":
         message_name = request.POST.get('name')
         message_email = request.POST.get('email')
-        message_subject = request.POST.get('SUBJECT')
+        message_subject = request.POST.get('subject')
         message_body = request.POST.get('message')
 
         ContactMessage.objects.create(
@@ -113,7 +113,6 @@ def contact_view(request):
             subject=message_subject,
             message=message_body
         )
-
 
         return redirect('contact_success')
 
