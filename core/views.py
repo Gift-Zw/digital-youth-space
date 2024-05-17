@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import User, EducationalArticle, BlogItem, BlogComment, ImageCollection, GalleryPicture
+from .models import User, EducationalArticle, BlogItem, BlogComment, ImageCollection, GalleryPicture, ContactMessage
 from .forms import CommentForm
 
 from django.core.mail import send_mail
@@ -114,7 +114,7 @@ def contact_view(request):
             message=message_body
         )
 
-        return redirect('contact_success')
+        return redirect('contact_success.html')
 
 
     else:
