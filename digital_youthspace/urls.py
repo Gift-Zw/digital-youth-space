@@ -29,6 +29,7 @@ urlpatterns = [
     path('educational-articles/', views.articles_view, name="articles"),
     path('gallery', views.gallery_view, name="gallery"),
     path('about/', views.about_view, name="about"),
+    path('browse/', views.browse_view, name="browse"),
     path('contact/', views.contact_view, name="contact"),
     path('blog-detail/<int:id>/', views.blog_detail_view, name="blog-detail"),
     path('edu/<int:id>/', views.article_detail_view, name="article-detail"),

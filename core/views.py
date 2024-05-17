@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import User, EducationalArticle, BlogItem, BlogComment, ImageCollection, GalleryPicture
 from .forms import CommentForm
+
+from django.core.mail import send_mail
+from django.contrib import messages
+from .models import ContactMessage
 
 
 # Create your views here.
@@ -11,6 +15,13 @@ def home_view(request):
         'home_nav': 'active',
     }
     return render(request, 'home.html', context)
+
+
+def browse_view(request):
+    context = {
+        'browse_nav': 'active',
+    }
+    return render(request, 'browse.html', context)
 
 
 def blog_view(request):
@@ -63,9 +74,6 @@ def article_detail_view(request, id):
     return render(request, 'article_detail.html', context)
 
 
-
-
-
 def feed_view(request):
     context = {
         'feed_nav': 'active',
@@ -92,4 +100,27 @@ def contact_view(request):
     context = {
         'contact_nav': 'active',
     }
-    return render(request, 'contact.html', context)
+
+    if request.method == "POST":
+        message_name = request.POST.get('name')
+        message_email = request.POST.get('email')
+        message_subject = request.POST.get('SUBJECT')
+        message_body = request.POST.get('message')
+
+        # Create and save the contact message to the database
+        contact_message = ContactMessage.objects.create(
+            name=message_name,
+            email=message_email,
+            subject=message_subject,
+            message=message_body
+        )
+
+        # Optionally, you can do further processing here
+
+        # Returning a response, such as a redirect or a confirmation message
+        return redirect('contact_success')  # Redirect to a success page
+        # Or you can render a confirmation message
+        # return render(request, 'contact_success.html')
+
+    else:
+        return render(request, 'contact.html', context)
