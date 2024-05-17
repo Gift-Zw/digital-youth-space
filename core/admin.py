@@ -1,10 +1,11 @@
 from django.contrib import admin
-from .models import User, EducationalArticle, BlogItem, BlogComment, ImageCollection, GalleryPicture
+from .models import User, EducationalArticle, BlogItem, BlogComment, ImageCollection, GalleryPicture, ContactMessage
 from django import forms
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+
 
 
 class UserAdmin(admin.ModelAdmin):
@@ -120,3 +121,6 @@ class ImageCollectionAdmin(admin.ModelAdmin):
 class GalleryPictureAdmin(admin.ModelAdmin):
     list_display = ('collection', 'date_posted')
     search_fields = ('collection__title',)
+
+class ContactMessageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'subject', 'message')
