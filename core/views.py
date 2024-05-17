@@ -119,3 +119,7 @@ def contact_view(request):
 
     else:
         return render(request, 'contact.html', context)
+
+
+def contact_success_view(request):
+    return render(request, 'contact_success.html')
