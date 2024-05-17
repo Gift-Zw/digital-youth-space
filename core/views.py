@@ -107,20 +107,16 @@ def contact_view(request):
         message_subject = request.POST.get('SUBJECT')
         message_body = request.POST.get('message')
 
-        # Create and save the contact message to the database
-        contact_message = ContactMessage.objects.create(
+        ContactMessage.objects.create(
             name=message_name,
             email=message_email,
             subject=message_subject,
             message=message_body
         )
 
-        # Optionally, you can do further processing here
 
-        # Returning a response, such as a redirect or a confirmation message
-        return redirect('contact_success')  # Redirect to a success page
-        # Or you can render a confirmation message
-        # return render(request, 'contact_success.html')
+        return redirect('contact_success')
+
 
     else:
         return render(request, 'contact.html', context)
