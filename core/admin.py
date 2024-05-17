@@ -122,5 +122,6 @@ class GalleryPictureAdmin(admin.ModelAdmin):
     list_display = ('collection', 'date_posted')
     search_fields = ('collection__title',)
 
+@admin.register(ContactMessage)
 class ContactMessageAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'subject', 'message')
