@@ -11,7 +11,6 @@ from .models import ContactMessage
 
 
 def home_view(request):
-
     context = {
         'home_nav': 'active',
         'blog_posts': BlogItem.objects.all()[:3]
@@ -89,6 +88,16 @@ def gallery_view(request):
         'collections': ImageCollection.objects.all()
     }
     return render(request, 'gallery.html', context)
+
+
+def images_view(request, id):
+    collection = ImageCollection.objects.filter(id=id).first()
+    context = {
+        'images': GalleryPicture.objects.filter(collection=collection),
+        'gallery_nav': 'active',
+        'title': collection.title
+    }
+    return render(request, 'images.html', context)
 
 
 def about_view(request):
