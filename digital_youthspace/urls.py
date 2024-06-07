@@ -34,7 +34,10 @@ urlpatterns = [
     path('blog-detail/<int:id>/', views.blog_detail_view, name="blog-detail"),
     path('edu/<int:id>/', views.article_detail_view, name="article-detail"),
     path('contact/success/', views.contact_success_view, name='contact_success'),
-    path('gallery-images/<int:id>/', views.images_view, name="images")
+    path('gallery-images/<int:id>/', views.images_view, name="images"),
+    path('logout/', views.logout_view, name="logout"),
+    path('log-in/', views.RegularUserLoginView.as_view(), name="user-login"),
+    path('register/', views.UserRegistrationView.as_view(), name="user-register"),
 
 ]
 

@@ -73,6 +73,7 @@
     {% endfor %}
 </ol>
 
+{% if request.user.is_authenticated %}
 <div id="respond">
 <h2 class="respond-title">Leave A Comment</h2>
 <form action="{% url 'blog-detail' blog_item.id %}" method="post">
@@ -88,6 +89,8 @@
 </div>
 </form>
 </div>
+
+{% endif %}
 
 </div>
 </div>

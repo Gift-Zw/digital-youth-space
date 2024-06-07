@@ -1,4 +1,11 @@
+from django.contrib.auth import logout, login
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+
+from .admin import UserCreationForm
 from .models import User, EducationalArticle, BlogItem, BlogComment, ImageCollection, GalleryPicture, ContactMessage
 from .forms import CommentForm
 
@@ -57,10 +64,10 @@ def blog_detail_view(request, id):
 
 
 def articles_view(request, category):
-
     context = {
         'articles_nav': 'active',
-        'educational_articles': EducationalArticle.objects.all() if(category == "All") else EducationalArticle.objects.filter(category=category),
+        'educational_articles': EducationalArticle.objects.all() if (
+                    category == "All") else EducationalArticle.objects.filter(category=category),
         'career': EducationalArticle.objects.filter(category='Career Development').count(),
         'personal': EducationalArticle.objects.filter(category='Personal Growth and Development').count(),
         'leadership': EducationalArticle.objects.filter(category='Leadership & Entrepreneurship').count(),
@@ -142,3 +149,35 @@ def contact_view(request):
 
 def contact_success_view(request):
     return render(request, 'contact_success.html')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
+
+
+class UserRegistrationView(CreateView):
+    model = User
+    form_class = UserCreationForm
+    template_name = 'register_user.html'
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        email = form.cleaned_data.get('email')
+        password = form.cleaned_data.get('password1')
+        user = User.objects.get(email=email)
+        user.is_staff = False
+        user.save()
+        login(self.request, user)
+        return redirect('home')
+
+
+class RegularUserLoginView(LoginView):
+    form_class = AuthenticationForm
+    template_name = 'user_login.html'
+    redirect_authenticated_user = True
+    redirect_field_name = 'next'
+
+    def get_success_url(self):
+        return reverse_lazy('home')
