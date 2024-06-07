@@ -11,8 +11,10 @@ from .models import ContactMessage
 
 
 def home_view(request):
+
     context = {
         'home_nav': 'active',
+        'blog_posts': BlogItem.objects.all()[:3]
     }
     return render(request, 'home.html', context)
 
