@@ -56,10 +56,11 @@ def blog_detail_view(request, id):
     return render(request, 'blog_detail.html', context)
 
 
-def articles_view(request):
+def articles_view(request, category):
+
     context = {
         'articles_nav': 'active',
-        'educational_articles': EducationalArticle.objects.all(),
+        'educational_articles': EducationalArticle.objects.all() if(category == "All") else EducationalArticle.objects.filter(category=category),
     }
     return render(request, 'articles.html', context)
 
