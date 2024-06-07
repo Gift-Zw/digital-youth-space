@@ -61,6 +61,13 @@ def articles_view(request, category):
     context = {
         'articles_nav': 'active',
         'educational_articles': EducationalArticle.objects.all() if(category == "All") else EducationalArticle.objects.filter(category=category),
+        'career': EducationalArticle.objects.filter(category='Career Development').count(),
+        'personal': EducationalArticle.objects.filter(category='Personal Growth and Development').count(),
+        'leadership': EducationalArticle.objects.filter(category='Leadership & Entrepreneurship').count(),
+        'financial': EducationalArticle.objects.filter(category='Financial Literacy').count(),
+        'social': EducationalArticle.objects.filter(category='Social Impact').count(),
+        'health': EducationalArticle.objects.filter(category='Health and Wellness').count(),
+        'technology': EducationalArticle.objects.filter(category='Technology & Innovation').count(),
     }
     return render(request, 'articles.html', context)
 

@@ -39,43 +39,43 @@
 <li>
 <a href="{% url 'articles' 'Career Development' %}">
 <i class="lni-dinner"></i>
-Career Development  <span class="category-counter">(5)</span>
+Career Development  <span class="category-counter">({{ career }})</span>
 </a>
 </li>
 <li>
 <a href="{% url 'articles' 'Personal Growth and Development'%}">
 <i class="lni-control-panel"></i>
-Personal Growth and Development <span class="category-counter">(8)</span>
+Personal Growth and Development <span class="category-counter">({{ personal }})</span>
 </a>
 </li>
 <li>
 <a href="{% url 'articles' 'Leadership & Entrepreneurship'%}">
 <i class="lni-github"></i>
-Leadership & Entrepreneurship <span class="category-counter">(2)</span>
+Leadership & Entrepreneurship <span class="category-counter">({{ leadership }})</span>
 </a>
 </li>
 <li>
 <a href="{% url 'articles' 'Financial Literacy' %}">
 <i class="lni-coffee-cup"></i>
-Financial Literacy <span class="category-counter">(3)</span>
+Financial Literacy <span class="category-counter">({{ financial }})</span>
 </a>
 </li>
 <li>
 <a href="{% url 'articles' 'Social Impact' %}">
 <i class="lni-home"></i>
-Social Impact <span class="category-counter">(4)</span>
+Social Impact <span class="category-counter">({{ social }})</span>
 </a>
 </li>
 <li>
 <a href="{% url 'articles' 'Health and Wellness' %}">
 <i class="lni-pencil"></i>
-Health and Wellness <span class="category-counter">(5)</span>
+Health and Wellness <span class="category-counter">({{ health }})</span>
 </a>
 </li>
 <li>
 <a href="{% url 'articles' 'Technology & Innovation' %}">
 <i class="lni-display"></i>
-Technology & Innovation <span class="category-counter">(9)</span>
+Technology & Innovation <span class="category-counter">({{ technology }})</span>
 </a>
 </li>
 </ul>
